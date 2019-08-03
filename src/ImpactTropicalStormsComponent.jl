@@ -1,5 +1,5 @@
 ﻿using Mimi
-
+#in deaths per person
 @defcomp impacttropicalstorms begin
     regions = Index()
 

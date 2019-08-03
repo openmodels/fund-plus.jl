@@ -18,7 +18,7 @@
     pop90 = Parameter(index=[regions])
 
     income = Parameter(index=[time,regions])
-    population = Parameter(index=[time,regions])
+    population = Parameter(index=[time,regions])#true population have to multiply by 10^6
     temp = Parameter(index=[time,regions])
 
     dfnl = Parameter(default = 1)

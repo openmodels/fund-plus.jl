@@ -1,5 +1,5 @@
 ﻿using Mimi
-
+#in deaths per person
 @defcomp impactdiarrhoea begin
     regions = Index()
 

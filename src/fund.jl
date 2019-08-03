@@ -34,15 +34,16 @@ include("ImpactWaterResourcesComponent.jl")
 include("ImpactSeaLevelRiseComponent.jl")
 include("ImpactAggregationComponent.jl")
 include("VslVmorbComponent.jl")
+include("ImpactTemperatureStressComponent.jl")
 
-export 
+export
     getfund     # Function that returns a version of fund allowing for different user specifications
 
 
 const global default_nsteps = 1050
 const global default_datadir = joinpath(dirname(@__FILE__), "..", "data")
 const global default_params = nothing
-  
+
 function getfund(; nsteps = default_nsteps, datadir = default_datadir, params = default_params)
 
     # ---------------------------------------------
@@ -101,7 +102,7 @@ function getfund(; nsteps = default_nsteps, datadir = default_datadir, params = 
     add_comp!(m, impactwaterresources)
     add_comp!(m, impactsealevelrise)
     add_comp!(m, impactaggregation)
-
+    add_comp!(m,impacttemperaturestress)#ADDED
     # ---------------------------------------------
     # Connect parameters to variables
     # ---------------------------------------------
@@ -199,6 +200,10 @@ function getfund(; nsteps = default_nsteps, datadir = default_datadir, params = 
     connect_param!(m, :impacttropicalstorms, :income, :socioeconomic, :income)
     connect_param!(m, :impacttropicalstorms, :regstmp, :climateregional, :regstmp)
 
+    connect_param!(m, :impacttemperaturestress, :population, :population, :population)#ADDED
+    connect_param!(m, :impacttemperaturestress, :income, :socioeconomic, :income)#ADDED
+    connect_param!(m, :impacttemperaturestress, :regtmp, :climateregional, :regtmp)#ADDED
+
     connect_param!(m, :vslvmorb, :population, :population, :population)
     connect_param!(m, :vslvmorb, :income, :socioeconomic, :income)
 
@@ -215,7 +220,7 @@ function getfund(; nsteps = default_nsteps, datadir = default_datadir, params = 
     connect_param!(m, :impactdeathmorbidity, :hurrdead, :impacttropicalstorms, :hurrdead)
     connect_param!(m, :impactdeathmorbidity, :extratropicalstormsdead, :impactextratropicalstorms, :extratropicalstormsdead)
     connect_param!(m, :impactdeathmorbidity, :diasick, :impactdiarrhoea, :diasick)
-
+    connect_param!(m, :impactdeathmorbidity, :tempstressdeadcost, :impacttemperaturestress, :tempstressdeadcost)#ADDED
     connect_param!(m, :impactwaterresources, :population, :population, :population)
     connect_param!(m, :impactwaterresources, :income, :socioeconomic, :income)
     connect_param!(m, :impactwaterresources, :temp, :climateregional, :temp)
@@ -250,6 +255,6 @@ function getfund(; nsteps = default_nsteps, datadir = default_datadir, params = 
 
     return m
 
-end 
+end
 
 end #module
