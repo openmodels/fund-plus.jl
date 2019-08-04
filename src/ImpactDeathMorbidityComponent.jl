@@ -33,7 +33,7 @@
     extratropicalstormsdead = Parameter(index=[time,regions])
     population = Parameter(index=[time,regions])
     diasick = Parameter(index=[time,regions])
-    tempstressdeadcost[t, r]= Parameter(index=[time,regions])#ADDED
+    tempstressdeadcost= Parameter(index=[time,regions])#ADDED
     # Other sources of death
     dead_other = Parameter(index=[time,regions])
     # Other sources of sickness

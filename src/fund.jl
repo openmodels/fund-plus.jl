@@ -24,6 +24,7 @@ include("ImpactBioDiversityComponent.jl")
 include("ImpactCardiovascularRespiratoryComponent.jl")
 include("ImpactCoolingComponent.jl")
 include("ImpactDiarrhoeaComponent.jl")
+include("ImpactTemperatureStressComponent.jl")
 include("ImpactExtratropicalStormsComponent.jl")
 include("ImpactDeathMorbidityComponent.jl")
 include("ImpactForestsComponent.jl")
@@ -34,7 +35,7 @@ include("ImpactWaterResourcesComponent.jl")
 include("ImpactSeaLevelRiseComponent.jl")
 include("ImpactAggregationComponent.jl")
 include("VslVmorbComponent.jl")
-include("ImpactTemperatureStressComponent.jl")
+
 
 export
     getfund     # Function that returns a version of fund allowing for different user specifications
@@ -92,6 +93,7 @@ function getfund(; nsteps = default_nsteps, datadir = default_datadir, params = 
     add_comp!(m, impactcardiovascularrespiratory)
     add_comp!(m, impactcooling)
     add_comp!(m, impactdiarrhoea)
+    add_comp!(m,impacttemperaturestress)#ADDED
     add_comp!(m, impactextratropicalstorms)
     add_comp!(m, impactforests)
     add_comp!(m, impactheating)
@@ -102,7 +104,7 @@ function getfund(; nsteps = default_nsteps, datadir = default_datadir, params = 
     add_comp!(m, impactwaterresources)
     add_comp!(m, impactsealevelrise)
     add_comp!(m, impactaggregation)
-    add_comp!(m,impacttemperaturestress)#ADDED
+
     # ---------------------------------------------
     # Connect parameters to variables
     # ---------------------------------------------
