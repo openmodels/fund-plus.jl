@@ -45,7 +45,7 @@
             for r in d.regions
                 v.dead[t, r] = p.dengue[t, r] + p.schisto[t, r] + p.malaria[t, r] + p.hurrdead[t, r] + p.extratropicalstormsdead[t, r] + p.dead_other[t,r]
                 if v.dead[t, r] > p.population[t, r] * 1000000.0#if the number of deaths is greater than the population
-                    v.dead[t, r] = p.population[t, r] / 1000000.0#what does this mean number of deah is equal to the population in million divided by a million
+                    v.dead[t, r] = p.population[t, r] * 1000000.0#what does this mean number of deah is equal to the population in million divided by a million
                 end
 
                 v.yll[t, r] = p.d2ld[r] * p.dengue[t, r] + p.d2ls[r] * p.schisto[t, r] + p.d2lm[r] * p.malaria[t, r] + p.d2lc[r] * p.cardheat[t, r] + p.d2lc[r] * p.cardcold[t, r] + p.d2lr[r] * p.resp[t, r]
