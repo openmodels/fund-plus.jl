@@ -24,14 +24,15 @@
     morbcost = Parameter(index=[time,regions])
     wetcost = Parameter(index=[time,regions])
     leavecost = Parameter(index=[time,regions])
-
+    economicdamage=Parameter(index=[time,regions])
+    
     # Other economic losses
     eloss_other = Parameter(index=[time,regions])
     # Other non-economic losses
     sloss_other = Parameter(index=[time,regions])
 
     function run_timestep(p, v, d, t)
-        
+
         if is_first(t)
             for r in d.regions
                 v.eloss[t, r] = 0.0
@@ -43,9 +44,10 @@
                     0.0 -
                     p.water[t, r] -
                     p.forests[t, r] -
-                    p.heating[t, r] -
-                    p.cooling[t, r] -
+                    #-p.heating[t, r] -
+                    #p.cooling[t, r] -
                     p.agcost[t, r] +
+                    p.economicdamage[t, r]+
                     p.drycost[t, r] +
                     p.protcost[t, r] +
                     p.entercost[t, r] +

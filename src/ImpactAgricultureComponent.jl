@@ -1,5 +1,5 @@
 ﻿using Mimi
-
+#changes made only CO2 fertilization left
 @defcomp impactagriculture begin
     regions = Index()
 
@@ -31,9 +31,9 @@
     acco2 = Parameter(index=[time])
 
     function run_timestep(p, v, d, t)
-        
+
         DBsT = 0.04     # base case yearly warming
-        
+
         if is_first(t)
             for r in d.regions
                 v.agrate[t, r] = p.agrbm[r] * (0.005 / DBsT)^p.agnl * p.agtime[r]
@@ -65,7 +65,8 @@
             end
 
             for r in d.regions
-                v.agcost[t, r] = min(1.0, v.agrate[t, r] + v.aglevel[t, r] + v.agco2[t, r]) * v.agrish[t, r] * p.income[t, r]
+                #v.agcost[t, r] = min(1.0, v.agrate[t, r] + v.aglevel[t, r] + v.agco2[t, r]) * v.agrish[t, r] * p.income[t, r]
+                v.agcost[t, r] = min(1.0, v.agco2[t, r]) * v.agrish[t, r] * p.income[t, r]#changed only co2 fertilization part left
             end
         end
     end

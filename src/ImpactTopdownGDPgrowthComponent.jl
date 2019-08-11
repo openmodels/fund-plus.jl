@@ -27,7 +27,7 @@ using Mimi
                 ypc = p.income[t, r] / p.population[t, r] * 1000.0
                 ypc90 = p.gdp90[r] / p.pop90[r] * 1000.0
 
-                v.economicdamage[t, r] = (p.alphagrowth[r] + p.betagrowth[r]*(p.regtmp[t,r]-p.temp90[r])+ p.betatwogrowth[r]*(p.temp[t,r]-p.temp90[r])^2)*p.income[t,r]
+                v.economicdamage[t, r] = (p.alphagrowth[r] + p.betagrowth[r]*(p.regtmp[t,r]-p.temp90[r])+ p.betatwogrowth[r]*(p.regtemp[t,r]-p.temp90[r])^2)*(p.income[t,r])
             end
         end
     end
