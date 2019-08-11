@@ -65,8 +65,8 @@
             end
 
             for r in d.regions
-                #v.agcost[t, r] = min(1.0, v.agrate[t, r] + v.aglevel[t, r] + v.agco2[t, r]) * v.agrish[t, r] * p.income[t, r]
-                v.agcost[t, r] = min(1.0, v.agco2[t, r]) * v.agrish[t, r] * p.income[t, r]#changed only co2 fertilization part left
+                v.agcost[t, r] = min(1.0, v.agrate[t, r] + v.aglevel[t, r] + v.agco2[t, r]) * v.agrish[t, r] * p.income[t, r]
+                #v.agcost[t, r] = min(1.0, v.agco2[t, r]) * v.agrish[t, r] * p.income[t, r]#changed only co2 fertilization part left
             end
         end
     end
