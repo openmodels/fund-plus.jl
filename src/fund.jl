@@ -103,7 +103,7 @@ function getfund(; nsteps = default_nsteps, datadir = default_datadir, params = 
     add_comp!(m, impactwaterresources)
     add_comp!(m, impactsealevelrise)
     add_comp!(m, impactaggregation)
-    add_comp!(m,impacttopdowngdpgrowth)
+    add_comp!(m, impacttopdowngdpgrowth)
 
     # ---------------------------------------------
     # Connect parameters to variables
