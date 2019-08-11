@@ -23,8 +23,8 @@ using Mimi
                 ypc90 = 1000.0 * p.gdp90[r] / p.pop90[r]
 
                  # 0.49 is the increase in global temperature from pre-industrial to 1990
-                TemperatureDifference = p.regtmp[t,r] - p.temp90[r]
-                v.tempstressdeadcost[t, r] = (p.alphamortality[r]+(p.betaonemortality[r] * (p.regtmp[t,r]-p.temp90[r])+ p.betatwomortality[r]*(p.regtmp[t,r]-p.temp90[r])^2)*((ypc)^(p.cmortality[r])))*(ypc)
+                TemperatureDifference = p.regtmp[t,r]
+                v.tempstressdeadcost[t, r] = (p.alphamortality[r]+(p.betaonemortality[r] * (p.regtmp[t,r])+ p.betatwomortality[r]*(p.regtmp[t,r])^2)*((ypc)^(p.cmortality[r])))*(ypc)
                 #tempmortaility is output as percent of gdp
                 #p.regtmp or p.temp or regstmp?
             end
