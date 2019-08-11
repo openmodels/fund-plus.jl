@@ -54,7 +54,7 @@
                     p.entercost[t, r] +
                     p.hurrdam[t, r] +
                     p.extratropicalstormsdam[t, r],
-                    #+p.eloss_other[t,r],
+                    +p.eloss_other[t,r],
                     p.income[t, r])
 
                 v.sloss[t, r] = 0.0 +
