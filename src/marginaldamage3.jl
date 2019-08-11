@@ -2,6 +2,7 @@ include("helper.jl")
 include("fund.jl")
 include("adder.jl")
 using .Fund
+
 """
 Returns one default FUND model and one model with additional emissions of the specified gas in the specified year.
 """
@@ -12,15 +13,15 @@ function getmarginalmodels(; gas = :C, emissionyear = 2010, parameters = nothing
 
     # Get model to add marginal emissions to
     m2 = Fund.getfund(nsteps = yearstorun, params = parameters)
-    add_comp!(m2, adder, :marginalemission, before = :climateco2cycle)
-    addem = zeros(yearstorun + 1)
-    addem[getindexfromyear(emissionyear):getindexfromyear(emissionyear) + 9] .= 1.0
+    add_comp!(m2, Mimi.adder, :marginalemission, before = :climateco2cycle, first=1951)
+    addem = zeros(yearstorun)
+    addem[getindexfromyear(emissionyear)-1:getindexfromyear(emissionyear) + 8] .= 1.0
     set_param!(m2, :marginalemission, :add, addem)
 
     # Reconnect the appropriate emissions in the marginal model
     if gas == :C
         connect_param!(m2, :marginalemission, :input, :emissions, :mco2)
-        connect_param!(m2, :climateco2cycle, :mco2, :marginalemission, :output, repeat([0.0], yearstorun+1))
+        connect_param!(m2, :climateco2cycle, :mco2, :marginalemission, :output,repeat([missing], yearstorun + 1))
     elseif gas == :CH4
         connect_param!(m2, :marginalemission, :input, :emissions, :globch4)
         connect_param!(m2, :climatech4cycle, :globch4, :marginalemission, :output)
