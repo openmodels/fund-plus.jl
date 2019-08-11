@@ -1,6 +1,7 @@
-include("../helper.jl")
-include("../fund.jl")
-using Fund 
+include("helper.jl")
+include("fund.jl")
+include("adder.jl")
+using .Fund
 
 """
 Returns one default FUND model and one model with additional emissions of the specified gas in the specified year.
@@ -14,7 +15,7 @@ function getmarginalmodels(; gas = :C, emissionyear = 2010, parameters = nothing
     m2 = getfund(nsteps = yearstorun, params = parameters)
     add_comp!(m2, adder, :marginalemission, before = :climateco2cycle)
     addem = zeros(yearstorun + 1)
-    addem[getindexfromyear(emissionyear):getindexfromyear(emissionyear) + 9] = 1.0
+    addem[getindexfromyear(emissionyear):getindexfromyear(emissionyear) + 9] .= 1.0
     set_param!(m2, :marginalemission, :add, addem)
 
     # Reconnect the appropriate emissions in the marginal model
@@ -42,7 +43,7 @@ function getmarginalmodels(; gas = :C, emissionyear = 2010, parameters = nothing
 end
 
 """
-Returns the social cost per one ton of additional emissions of the specified gas in the specified year. 
+Returns the social cost per one ton of additional emissions of the specified gas in the specified year.
 Uses the specified eta and prtp for discounting, with the option to use equity weights.
 """
 function marginaldamage3(; emissionyear = 2010, parameters = nothing, yearstoaggregate = 1000, gas = :C, useequityweights = false, eta = 1.0, prtp = 0.001)

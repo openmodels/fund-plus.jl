@@ -1,11 +1,11 @@
-include("../helper.jl")
-include("../fund.jl")
-using Fund 
+include("helper.jl")
+include("fund.jl")
+using .Fund
 
 """
 Returns a matrix of marginal damages per one ton of additional emissions of the specified gas in the specified year.
 """
-function getmarginaldamages(; emissionyear=2010, parameters = nothing, yearstoaggregate = 1000, gas = :C) 
+function getmarginaldamages(; emissionyear=2010, parameters = nothing, yearstoaggregate = 1000, gas = :C)
 
     # Calculate number of years to run the models
     yearstorun = min(1050, getindexfromyear(emissionyear) + yearstoaggregate)
