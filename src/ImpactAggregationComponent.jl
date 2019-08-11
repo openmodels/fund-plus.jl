@@ -15,6 +15,7 @@
     cooling = Parameter(index=[time,regions])
     agcost = Parameter(index=[time,regions])
     drycost = Parameter(index=[time,regions])
+    economicdamage=Parameter(index=[time,regions])
     protcost = Parameter(index=[time,regions])
     entercost = Parameter(index=[time,regions])
     hurrdam = Parameter(index=[time,regions])
@@ -24,8 +25,8 @@
     morbcost = Parameter(index=[time,regions])
     wetcost = Parameter(index=[time,regions])
     leavecost = Parameter(index=[time,regions])
-    economicdamage=Parameter(index=[time,regions])
-    
+
+
     # Other economic losses
     eloss_other = Parameter(index=[time,regions])
     # Other non-economic losses
