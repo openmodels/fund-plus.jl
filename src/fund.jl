@@ -103,7 +103,7 @@ function getfund(; nsteps = default_nsteps, datadir = default_datadir, params = 
     add_comp!(m, impactwaterresources)
     add_comp!(m, impactsealevelrise)
     add_comp!(m, impactaggregation)
-    add_com!(m,impacttopdowngdpgrowth)
+    add_comp!(m,impacttopdowngdpgrowth)
 
     # ---------------------------------------------
     # Connect parameters to variables
@@ -248,7 +248,7 @@ function getfund(; nsteps = default_nsteps, datadir = default_datadir, params = 
     connect_param!(m, :impactaggregation, :morbcost, :impactdeathmorbidity, :morbcost)
     connect_param!(m, :impactaggregation, :wetcost, :impactsealevelrise, :wetcost)
     connect_param!(m, :impactaggregation, :leavecost, :impactsealevelrise, :leavecost)
-    connect_param!(m, :impactaggregation, :economicdamage, :impactTopdownGDPgrowth, :economicdamage)
+    connect_param!(m, :impactaggregation, :economicdamage, :impacttopdowngdpgrowth, :economicdamage)
 
 
     # ---------------------------------------------
