@@ -48,7 +48,7 @@
                     #-p.heating[t, r] -
                     #p.cooling[t, r] -
                     #-p.agcost[t, r] +
-                    +p.economicdamage[t, r]+
+                    -p.economicdamage[t, r]+
                     p.drycost[t, r] +
                     p.protcost[t, r] +
                     p.entercost[t, r] +
