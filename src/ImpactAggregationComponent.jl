@@ -45,9 +45,9 @@
                     0.0 -
                     p.water[t, r] -
                     p.forests[t, r]
-                    -p.heating[t, r] -
-                    p.cooling[t, r] -
-                    -p.agcost[t, r] +
+                    #-p.heating[t, r] -
+                    #p.cooling[t, r]
+                #    -p.agcost[t, r]
                     -p.economicdamage[t, r]+
                     p.drycost[t, r] +
                     p.protcost[t, r] +
