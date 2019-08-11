@@ -45,15 +45,15 @@
                     0.0 -
                     p.water[t, r] -
                     p.forests[t, r]
-                    #-p.heating[t, r] -
-                    #p.cooling[t, r] -
-                    #-p.agcost[t, r] +
+                    -p.heating[t, r] -
+                    p.cooling[t, r] -
+                    -p.agcost[t, r] +
                     -p.economicdamage[t, r]+
                     p.drycost[t, r] +
                     p.protcost[t, r] +
                     p.entercost[t, r] +
                     p.hurrdam[t, r] +
-                    p.extratropicalstormsdam[t, r],
+                    p.extratropicalstormsdam[t, r]
                     +p.eloss_other[t,r],
                     p.income[t, r])
 
