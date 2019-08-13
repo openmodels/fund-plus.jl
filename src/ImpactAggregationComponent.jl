@@ -43,8 +43,8 @@
             for r in d.regions
                 v.eloss[t, r] = min(
                     0.0 -
-                    p.water[t, r] -
-                    p.forests[t, r]
+                    p.water[t, r]
+                    #p.forests[t, r]
                     #-p.heating[t, r] -
                     #p.cooling[t, r]
                 #    -p.agcost[t, r]
