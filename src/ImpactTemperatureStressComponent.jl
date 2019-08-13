@@ -23,11 +23,11 @@ using Mimi
                 ypc90 = 1000.0 * p.gdp90[r] / p.pop90[r]
 
                  # 0.49 is the increase in global temperature from pre-industrial to 1990
-                TemperatureStress =(p.alphamortality[r]+(p.betaonemortality[r] * (p.regtmp[t,r])+ p.betatwomortality[r]*(p.regtmp[t,r])^2)*((ypc)^(p.cmortality[r])))
-                if TemperatureStress> 100
-                    TemperatureStress= 100
+                TemperatureStress =(p.alphamortality[r]+(p.betaonemortality[r] * (p.regtmp[t,r])+ p.betatwomortality[r]*(p.regtmp[t,r])^2)*((ypc/ypc90)^(p.cmortality[r])))
+                if TemperatureStress> 10
+                    TemperatureStress= 10
                 end
-                v.tempstressdeadcost[t, r] = TemperatureStress#*(p.income[t,r]*1000000000/100)
+                v.tempstressdeadcost[t, r] = TemperatureStress*(p.income[t,r]*1000000000/100)
                 #tempmortaility is output as percent of gdp
                 #p.regtmp or regstmp?
                 end
