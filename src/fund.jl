@@ -33,6 +33,7 @@ include("ImpactVectorBorneDiseasesComponent.jl")
 include("ImpactTropicalStormsComponent.jl")
 include("ImpactWaterResourcesComponent.jl")
 include("ImpactSeaLevelRiseComponent.jl")
+include("impactTopdownGDPgrowthComponent.jl")
 include("ImpactAggregationComponent.jl")
 include("VslVmorbComponent.jl")
 
@@ -103,6 +104,7 @@ function getfund(; nsteps = default_nsteps, datadir = default_datadir, params = 
     add_comp!(m, impactdeathmorbidity)
     add_comp!(m, impactwaterresources)
     add_comp!(m, impactsealevelrise)
+    add_comp!(m, impacttopdowngdpgrowth)
     add_comp!(m, impactaggregation)
 
     # ---------------------------------------------
@@ -206,6 +208,10 @@ function getfund(; nsteps = default_nsteps, datadir = default_datadir, params = 
     connect_param!(m, :impacttemperaturestress, :income, :socioeconomic, :income)#ADDED
     connect_param!(m, :impacttemperaturestress, :regtmp, :climateregional, :regtmp)#ADDED
 
+    connect_param!(m, :impacttopdowngdpgrowth, :population, :population, :population)
+    connect_param!(m, :impacttopdowngdpgrowth, :income, :socioeconomic, :income)
+    connect_param!(m, :impacttopdowngdpgrowth, :regtmp, :climateregional, :regtmp)
+
     connect_param!(m, :vslvmorb, :population, :population, :population)
     connect_param!(m, :vslvmorb, :income, :socioeconomic, :income)
 
@@ -248,6 +254,7 @@ function getfund(; nsteps = default_nsteps, datadir = default_datadir, params = 
     connect_param!(m, :impactaggregation, :morbcost, :impactdeathmorbidity, :morbcost)
     connect_param!(m, :impactaggregation, :wetcost, :impactsealevelrise, :wetcost)
     connect_param!(m, :impactaggregation, :leavecost, :impactsealevelrise, :leavecost)
+    connect_param!(m, :impactaggregation, :economicdamage, :impacttopdowngdpgrowth, :economicdamage)
 
     # ---------------------------------------------
     # Set leftover parameters
