@@ -15,6 +15,7 @@
     cooling = Parameter(index=[time,regions])
     agcost = Parameter(index=[time,regions])
     drycost = Parameter(index=[time,regions])
+    economicdamage=Parameter(index=[time,regions])
     protcost = Parameter(index=[time,regions])
     entercost = Parameter(index=[time,regions])
     hurrdam = Parameter(index=[time,regions])
@@ -31,7 +32,7 @@
     sloss_other = Parameter(index=[time,regions])
 
     function run_timestep(p, v, d, t)
-        
+
         if is_first(t)
             for r in d.regions
                 v.eloss[t, r] = 0.0
@@ -42,10 +43,7 @@
                 v.eloss[t, r] = min(
                     0.0 -
                     p.water[t, r] -
-                    p.forests[t, r] -
-                    p.heating[t, r] -
-                    p.cooling[t, r] -
-                    p.agcost[t, r] +
+                    -p.economicdamage[t, r]+#no forest here
                     p.drycost[t, r] +
                     p.protcost[t, r] +
                     p.entercost[t, r] +
