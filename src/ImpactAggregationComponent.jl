@@ -42,7 +42,7 @@
             for r in d.regions
                 v.eloss[t, r] = min(
                     0.0 -
-                    p.water[t, r] -
+                    p.water[t, r] 
                     -p.economicdamage[t, r]+#no forest here
                     p.drycost[t, r] +
                     p.protcost[t, r] +
