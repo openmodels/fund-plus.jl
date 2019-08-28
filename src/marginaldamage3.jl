@@ -6,7 +6,7 @@ using .Fund
 """
 Returns one default FUND model and one model with additional emissions of the specified gas in the specified year.
 """
-function getmarginalmodels(; gas = :C, emissionyear = 2010, parameters = nothing, yearstorun = 1050)
+function getmarginalmodels(; gas = :C, emissionyear = 2019, parameters = nothing, yearstorun = 1050)
 
     # Get default FUND model
     m1 = Fund.getfund(nsteps = yearstorun, params = parameters)
@@ -46,7 +46,7 @@ end
 Returns the social cost per one ton of additional emissions of the specified gas in the specified year.
 Uses the specified eta and prtp for discounting, with the option to use equity weights.
 """
-function marginaldamage3(; emissionyear = 2010, parameters = nothing, yearstoaggregate = 1000, gas = :C, useequityweights = false, eta = 1.0, prtp = 0.001)
+function marginaldamage3(; emissionyear = 2019, parameters = nothing, yearstoaggregate = 1000, gas = :C, useequityweights = false, eta = 1.5, prtp = 0.001)
     yearstorun = min(1050, getindexfromyear(emissionyear) + yearstoaggregate)
 
     m1, m2 = getmarginalmodels(emissionyear = emissionyear, parameters = parameters, yearstorun = yearstorun, gas = gas)
