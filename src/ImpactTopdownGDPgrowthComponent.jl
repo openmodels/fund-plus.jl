@@ -14,7 +14,7 @@ using Mimi
 
 
     temp90 = Parameter(index=[regions])
-    bregtmp = Parameter(index=[regions])#Maybe it's good for plots of the damages
+    bregtmp = Parameter(index=[regions])
     regtmp = Parameter(index=[time,regions])
     alphagrowth=Parameter(index=[regions])
     betagrowth=Parameter(index=[regions])
